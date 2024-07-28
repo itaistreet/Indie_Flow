@@ -16,7 +16,7 @@ class CharacterDetails extends StatelessWidget {
       appBar: AppBar(
 
         title:Text( characterDetails['name']),
-        leading:  IconButton(icon: Icon(Icons.arrow_back), onPressed: () {
+        leading:  IconButton(icon: const Icon(Icons.arrow_back), onPressed: () {
           Navigator.pop(context);
         },),
       ),

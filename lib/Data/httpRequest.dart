@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:indie_flow_test/Data/cache.dart';
 
 
 
@@ -18,6 +19,7 @@ class ApiRequest {
       final url = Uri.parse(pApiBaseUrl);
       final response = await http.get(url);
       if (response.statusCode == 200) {
+        CacheManger.localStorageStoreString('data',  response.body);
         final data = jsonDecode(response.body);
         return data;
       } else {
