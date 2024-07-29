@@ -4,20 +4,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class CacheManger {
  static SharedPreferences? sharedPreferences;
- static void getInstance() async {
-   SharedPreferences.getInstance().then((onValue){
-     sharedPreferences=onValue;
-
-   });
-
-   // var pCompleter =  Completer<SharedPreferences>();
-   // if (sharedPreferences == null) {
-   //   sharedPreferences = await SharedPreferences.getInstance();
-   //     pCompleter.complete(sharedPreferences);
-   // } else {
-   //   return sharedPreferences!;
-   // }
-   // return pCompleter.future;
+ static Future getSharedPreferences() async {
+   sharedPreferences = await SharedPreferences.getInstance();
  }
 
 

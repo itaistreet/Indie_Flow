@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
+import 'package:indie_flow_test/Data/Constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'cache.dart';
@@ -19,22 +20,22 @@ class DataNotifier extends ChangeNotifier {
 
   DataNotifier() {
 
-    ApiRequest("https://rickandmortyapi.com/api/character", onGetHttpResponse);
+    ApiRequest(Constants.RICK_AND_MORTY_API, onGetHttpResponse);
   }
   void onGetHttpResponse(Map<String, dynamic>? httpMapResponse) {
     _fetchingData=false;
     if(httpMapResponse==null){
-     String? dataFromCache= CacheManger.localStorageGetString('data',null);
+     String? dataFromCache= CacheManger.localStorageGetString(Constants.RICK_AND_MORTY_DATA_KEY,null);
       if(dataFromCache!=null){
         Map<String, dynamic> mapDecoded= jsonDecode(dataFromCache);
-        rickAndMortyFilteredListOfData=mapDecoded['results'];
-        rickAndMortyCompleteListOfData=mapDecoded['results'];
+        rickAndMortyFilteredListOfData=mapDecoded[Constants.HTTP_RESULTS_KEY];
+        rickAndMortyCompleteListOfData=mapDecoded[Constants.HTTP_RESULTS_KEY];
       }else {
         _failedToLoad=true;
       }
     }else {
-      rickAndMortyFilteredListOfData = httpMapResponse['results'];
-      rickAndMortyCompleteListOfData=httpMapResponse['results'];
+      rickAndMortyFilteredListOfData = httpMapResponse[Constants.HTTP_RESULTS_KEY];
+      rickAndMortyCompleteListOfData=httpMapResponse[Constants.HTTP_RESULTS_KEY];
     }
 
     notifyListeners();
@@ -42,10 +43,10 @@ class DataNotifier extends ChangeNotifier {
 
 
 
-  void filterListByUserRequest(String filterType, String filter) {
+  void filterListByUserRequest(String filterType, String filterValue) {
       List tempList=[];
       for (Map item in rickAndMortyCompleteListOfData){
-        if (item[filterType]!=null && item[filterType]==filter){
+        if (item[filterType]!=null && item[filterType]==filterValue){
           tempList.add(item);
         }
       }

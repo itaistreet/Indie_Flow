@@ -1,20 +1,24 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:indie_flow_test/Data/Constants.dart';
 import 'package:indie_flow_test/Data/cache.dart';
 import 'package:indie_flow_test/Data/dataNotifier.dart';
 import 'package:provider/provider.dart';
 
 import 'CharacterDetails.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+ await CacheManger.getSharedPreferences();
+    runApp(const MyApp());
+
+
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -43,28 +47,14 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
-    CacheManger.getInstance();
     super.initState();
   }
-
-  List filterList = ['Females', 'Men', 'All', 'Dead', 'Alive'];
+  @override
+  void dispose(){
+    super.dispose();
+  }
   int selectedFilterIndex = 2;
 
-  Color getFilterButtonColor(int index) {
-    if (index == selectedFilterIndex) {
-      return Colors.blue;
-    } else {
-      return Colors.white;
-    }
-  }
-
-  Color getFilterTextColor(int index) {
-    if (index == selectedFilterIndex) {
-      return Colors.white;
-    } else {
-      return Colors.black;
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -116,9 +106,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Column(
-                                    children: [Text('Name: ${dataList.listOfData[index]['name'] ??''}'), Text('Species: ${dataList.listOfData[index]['species']??''}')],
+                                    children: [Text('Name: ${dataList.listOfData[index][Constants.NAME_OF_CHARACTER_KEY] ??''}'), Text('Species: ${dataList.listOfData[index][Constants.SPECIES_OF_CHARACTER_KEY]??''}')],
                                   ),
-                                  if(dataList.listOfData[index]['image']!=null && dataList.listOfData[index]['image']!='')
+                                  if(dataList.listOfData[index][Constants.IMAGE_OF_CHARACTER_KEY]!=null && dataList.listOfData[index][Constants.IMAGE_OF_CHARACTER_KEY]!='')
                                   Image.network(dataList.listOfData[index]['image'])
                                 ],
                               )),
@@ -141,7 +131,7 @@ class _MyHomePageState extends State<MyHomePage> {
             InkWell(
               onTap: () {
                 selectedFilterIndex = 0;
-                data.filterListByUserRequest('gender', 'Female');
+                data.filterListByUserRequest(Constants.GENDER_OF_CHARACTER_KEY,Constants.GENDER_FEMALE);
               },
               child: Container(
                 padding: const EdgeInsetsDirectional.all(4),
@@ -154,7 +144,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 selectedFilterIndex = 1;
 
-                data.filterListByUserRequest('gender', 'Male');
+                data.filterListByUserRequest(Constants.GENDER_OF_CHARACTER_KEY,Constants.GENDER_MALE);
               },
               child: Container(
                 margin: const EdgeInsetsDirectional.all(4),
@@ -179,7 +169,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 selectedFilterIndex = 3;
 
-                data.filterListByUserRequest('status', 'Dead');
+                data.filterListByUserRequest(Constants.STATUS_OF_CHARACTER_KEY,Constants.STATUS_DEAD);
               },
               child: Container(
                 padding: const EdgeInsetsDirectional.all(4),
@@ -191,7 +181,7 @@ class _MyHomePageState extends State<MyHomePage> {
             InkWell(
               onTap: () {
                 selectedFilterIndex = 4;
-                data.filterListByUserRequest('status', 'Alive');
+                data.filterListByUserRequest(Constants.STATUS_OF_CHARACTER_KEY,Constants.STATUS_ALIVE);
               },
               child: Container(
                 padding: const EdgeInsetsDirectional.all(4),
@@ -203,4 +193,20 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ));
   }
+  Color getFilterButtonColor(int index) {
+    if (index == selectedFilterIndex) {
+      return Colors.blue;
+    } else {
+      return Colors.white;
+    }
+  }
+
+  Color getFilterTextColor(int index) {
+    if (index == selectedFilterIndex) {
+      return Colors.white;
+    } else {
+      return Colors.black;
+    }
+  }
+
 }

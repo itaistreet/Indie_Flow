@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:indie_flow_test/Data/Constants.dart';
 import 'package:indie_flow_test/Data/cache.dart';
 
 
@@ -19,16 +21,20 @@ class ApiRequest {
       final url = Uri.parse(pApiBaseUrl);
       final response = await http.get(url);
       if (response.statusCode == 200) {
-        CacheManger.localStorageStoreString('data',  response.body);
+
+        CacheManger.localStorageStoreString(Constants.RICK_AND_MORTY_DATA_KEY,  response.body);
         final data = jsonDecode(response.body);
         return data;
       } else {
-        print('Error: ${response.statusCode}'); // Error response code
-
+        if (kDebugMode) {
+          print('Error: ${response.statusCode}');
+        } // Error response code
         return null;
       }
     } catch (e) {
-      print('Exception: $e'); // Handle exceptions
+      if (kDebugMode) {
+        print('Exception: $e');
+      } // Handle exceptions
     }
   }
 
