@@ -11,7 +11,6 @@ class CharctersList extends StatelessWidget {
    CharctersList({super.key, required this.title});
 
   final String title;
-
   int selectedFilterIndex = 2;
 
   @override

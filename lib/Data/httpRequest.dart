@@ -21,10 +21,9 @@ class ApiRequest {
       final url = Uri.parse(pApiBaseUrl);
       final response = await http.get(url);
       if (response.statusCode == 200) {
-
         CacheManger.localStorageStoreString(Constants.RICK_AND_MORTY_DATA_KEY,  response.body);
         final data = jsonDecode(response.body);
-        return data;
+        return null;
       } else {
         if (kDebugMode) {
           print('Error: ${response.statusCode}');
