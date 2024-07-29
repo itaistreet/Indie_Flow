@@ -27,7 +27,7 @@ class CharacterDetails extends StatelessWidget {
           padding: EdgeInsetsDirectional.all(24),
           child: Text(
               textAlign: TextAlign.center,
-              'This is ${characterDetails.name}, Gender type: ${characterDetails.gender}. Originally from ${characterDetails.origin['name']}\n  '),
+              'This is ${characterDetails.name}, Gender type: ${characterDetails.gender}. Originally from ${characterDetails.origin.name}\n  '),
 
         ),
       ),

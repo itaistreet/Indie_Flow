@@ -10,8 +10,8 @@ class CharacterAppModel {
   final String gender;
   final String image;
 
-  final Map origin;
-  final Map location;
+  final LocationLinkModel origin;
+  final LocationLinkModel location;
 
 
 

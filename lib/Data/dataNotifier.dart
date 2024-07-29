@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:indie_flow_test/Data/Constants.dart';
 import 'package:indie_flow_test/Data/Domain/Models/CharacterAppModel.dart';
+import 'package:indie_flow_test/Data/Domain/Models/LocationLinkModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'cache.dart';
@@ -37,7 +38,7 @@ class DataNotifier extends ChangeNotifier {
       rickAndMortyCompleteListOfData=httpMapResponse[Constants.HTTP_RESULTS_KEY];
     }
     for (var item in rickAndMortyCompleteListOfData){
-   CharacterAppModel characterAppModel= CharacterAppModel(id: item['id'] , name: item['name'], species: item['species'], status: item['status'], gender: item['gender'], image: item['image'], origin: item['origin'], location: item['location']);
+   CharacterAppModel characterAppModel= CharacterAppModel(id: item['id'] , name: item['name'], species: item['species'], status: item['status'], gender: item['gender'], image: item['image'], origin: LocationLinkModel(name: item['origin']['name'], url: item['origin']['url']), location: LocationLinkModel(name: item['location']['name'], url: item['location']['url']));
    _completeCharacterAppModelList.add(characterAppModel);
    _filteredCharacterAppModelList.add(characterAppModel);
     }
