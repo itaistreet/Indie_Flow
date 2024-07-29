@@ -1,6 +1,7 @@
 
 class Constants {
 
+  static  String  ALL_CHARCTERS_KEY= 'all';
 
   static  String  NAME_OF_CHARACTER_KEY= 'name';
   static  String  SPECIES_OF_CHARACTER_KEY= 'species';

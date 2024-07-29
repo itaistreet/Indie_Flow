@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   provider: ^6.0.3
   shared_preferences:
+  cached_network_image: 3.3.1
 
   http:
 dev_dependencies:

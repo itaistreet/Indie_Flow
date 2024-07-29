@@ -3,8 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../Data/Domain/Models/CharacterAppModel.dart';
+
 class CharacterDetails extends StatelessWidget {
-  late Map characterDetails;
+  late CharacterAppModel characterDetails;
   CharacterDetails({super.key,required this.characterDetails});
 
 
@@ -15,7 +17,7 @@ class CharacterDetails extends StatelessWidget {
     return  Scaffold(
       appBar: AppBar(
 
-        title:Text( characterDetails['name']),
+        title:Text( characterDetails.name),
         leading:  IconButton(icon: const Icon(Icons.arrow_back), onPressed: () {
           Navigator.pop(context);
         },),
@@ -25,7 +27,7 @@ class CharacterDetails extends StatelessWidget {
           padding: EdgeInsetsDirectional.all(24),
           child: Text(
               textAlign: TextAlign.center,
-              'This is ${characterDetails['name']}, Gender type: ${characterDetails['gender']}. Originally from ${characterDetails['origin']['name']}\n  '),
+              'This is ${characterDetails.name}, Gender type: ${characterDetails.gender}. Originally from ${characterDetails.origin['name']}\n  '),
 
         ),
       ),
