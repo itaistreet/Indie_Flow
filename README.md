@@ -17,6 +17,7 @@ This project is a Flutter application designed to fetch and display character da
 
 ## How to run the project
 - Clone the repository
+- Checkout `main` branch
 - Run `flutter pub get` to install dependencies
 - Run `flutter run` to start the app
 
