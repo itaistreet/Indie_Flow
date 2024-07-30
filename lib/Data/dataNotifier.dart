@@ -38,7 +38,18 @@ class DataNotifier extends ChangeNotifier {
       rickAndMortyCompleteListOfData=httpMapResponse[Constants.HTTP_RESULTS_KEY];
     }
     for (var item in rickAndMortyCompleteListOfData){
-   CharacterAppModel characterAppModel= CharacterAppModel(id: item['id'] , name: item['name'], species: item['species'], status: item['status'], gender: item['gender'], image: item['image'], origin: LocationLinkModel(name: item['origin']['name'], url: item['origin']['url']), location: LocationLinkModel(name: item['location']['name'], url: item['location']['url']));
+       Map? origin= item['origin'];
+       Map? url= item['location'];
+       if(origin==null){
+         origin={};
+         origin['name']='Unknown';
+         origin['url']='Unknown';
+       }if(url==null){
+         url={};
+         url['name']='Unknown';
+         url['url']='Unknown';
+       }
+   CharacterAppModel characterAppModel= CharacterAppModel(id: item['id']??'Unknown' , name: item['name']??'Unknown', species: item['species']??'Unknown', status: item['status']??'Unknown', gender: item['gender']??'Unknown', image: item['image']??'Unknown', origin: LocationLinkModel(name: origin['name']??'Unknown', url: origin['url']??'Unknown'), location: LocationLinkModel(name: url['name']??'Unknown', url: url['url']??'Unknown'));
    _completeCharacterAppModelList.add(characterAppModel);
    _filteredCharacterAppModelList.add(characterAppModel);
     }

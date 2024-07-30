@@ -8,7 +8,7 @@ import '../Data/Constants.dart';
 import '../Data/dataNotifier.dart';
 
 class CharctersList extends StatelessWidget {
-   CharctersList({super.key, required this.title});
+  CharctersList({super.key, required this.title});
 
   final String title;
   int selectedFilterIndex = 2;
@@ -41,45 +41,17 @@ class CharctersList extends StatelessWidget {
                   return ListView.builder(
                       itemCount: dataList.listOfData.length,
                       itemBuilder: (context, index) {
-                        return CharacterListTile(character: dataList.listOfData[index], onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute<void>(
-                                builder: (context) => CharacterDetails(
-                                  characterDetails: dataList.listOfData[index],
-                                )),
-                          );
-                        });
-                        
-                        return InkWell(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute<void>(
-                                  builder: (context) => CharacterDetails(
-                                    characterDetails: dataList.listOfData[index],
-                                  )),
-                            );
-                          },
-                          child: Container(
-                              height: 50,
-                              margin: const EdgeInsetsDirectional.only(top: 8),
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                border: Border(bottom: BorderSide(color: Colors.blueGrey, width: 1.5)),
-                              ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    children: [Text('Name: ${dataList.listOfData[index][Constants.NAME_OF_CHARACTER_KEY] ??''}'), Text('Species: ${dataList.listOfData[index][Constants.SPECIES_OF_CHARACTER_KEY]??''}')],
-                                  ),
-                                  if(dataList.listOfData[index][Constants.IMAGE_OF_CHARACTER_KEY]!=null && dataList.listOfData[index][Constants.IMAGE_OF_CHARACTER_KEY]!='')
-                                    Image.network(dataList.listOfData[index]['image'])
-                                ],
-                              )),
-                        );
+                        return CharacterListTile(
+                            character: dataList.listOfData[index],
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute<void>(
+                                    builder: (context) => CharacterDetails(
+                                          characterDetails: dataList.listOfData[index],
+                                        )),
+                              );
+                            });
                       });
                 }),
           ),
@@ -98,7 +70,7 @@ class CharctersList extends StatelessWidget {
             InkWell(
               onTap: () {
                 selectedFilterIndex = 0;
-                data.filterListByUserRequest(Constants.GENDER_OF_CHARACTER_KEY,Constants.GENDER_FEMALE);
+                data.filterListByUserRequest(Constants.GENDER_OF_CHARACTER_KEY, Constants.GENDER_FEMALE);
               },
               child: Container(
                 padding: const EdgeInsetsDirectional.all(4),
@@ -111,7 +83,7 @@ class CharctersList extends StatelessWidget {
               onTap: () {
                 selectedFilterIndex = 1;
 
-                data.filterListByUserRequest(Constants.GENDER_OF_CHARACTER_KEY,Constants.GENDER_MALE);
+                data.filterListByUserRequest(Constants.GENDER_OF_CHARACTER_KEY, Constants.GENDER_MALE);
               },
               child: Container(
                 margin: const EdgeInsetsDirectional.all(4),
@@ -123,7 +95,7 @@ class CharctersList extends StatelessWidget {
             InkWell(
               onTap: () {
                 selectedFilterIndex = 2;
-                data.filterListByUserRequest(Constants.ALL_CHARCTERS_KEY,'');
+                data.filterListByUserRequest(Constants.ALL_CHARCTERS_KEY, '');
               },
               child: Container(
                 margin: const EdgeInsetsDirectional.all(4),
@@ -136,7 +108,7 @@ class CharctersList extends StatelessWidget {
               onTap: () {
                 selectedFilterIndex = 3;
 
-                data.filterListByUserRequest(Constants.STATUS_OF_CHARACTER_KEY,Constants.STATUS_DEAD);
+                data.filterListByUserRequest(Constants.STATUS_OF_CHARACTER_KEY, Constants.STATUS_DEAD);
               },
               child: Container(
                 padding: const EdgeInsetsDirectional.all(4),
@@ -148,7 +120,7 @@ class CharctersList extends StatelessWidget {
             InkWell(
               onTap: () {
                 selectedFilterIndex = 4;
-                data.filterListByUserRequest(Constants.STATUS_OF_CHARACTER_KEY,Constants.STATUS_ALIVE);
+                data.filterListByUserRequest(Constants.STATUS_OF_CHARACTER_KEY, Constants.STATUS_ALIVE);
               },
               child: Container(
                 padding: const EdgeInsetsDirectional.all(4),
