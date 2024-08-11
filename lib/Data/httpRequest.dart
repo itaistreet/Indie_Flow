@@ -23,7 +23,7 @@ class ApiRequest {
       if (response.statusCode == 200) {
         CacheManger.localStorageStoreString(Constants.RICK_AND_MORTY_DATA_KEY,  response.body);
         final data = jsonDecode(response.body);
-        return null;
+        return data;
       } else {
         if (kDebugMode) {
           print('Error: ${response.statusCode}');
