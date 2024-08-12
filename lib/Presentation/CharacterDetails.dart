@@ -16,8 +16,7 @@ class CharacterDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-
-        title:Text( characterDetails.name),
+        title:Text(characterDetails.name),
         leading:  IconButton(icon: const Icon(Icons.arrow_back), onPressed: () {
           Navigator.pop(context);
         },),
@@ -28,7 +27,6 @@ class CharacterDetails extends StatelessWidget {
           child: Text(
               textAlign: TextAlign.center,
               'This is ${characterDetails.name}, Gender type: ${characterDetails.gender}. Originally from ${characterDetails.origin.name}\n  '),
-
         ),
       ),
 

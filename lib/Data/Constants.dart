@@ -9,6 +9,9 @@ class Constants {
   static  String  STATUS_OF_CHARACTER_KEY= 'status';
   static  String  GENDER_OF_CHARACTER_KEY= 'gender';
   static  String  HTTP_RESULTS_KEY= 'results';
+  static  String  HTTP_INFO_KEY= 'info';
+
+
   static  String  RICK_AND_MORTY_DATA_KEY= 'rickAndMortyDataKey';
   static  String  RICK_AND_MORTY_API= "https://rickandmortyapi.com/api/character";
   static  String  SHOW_ALL_KEY= 'all';
