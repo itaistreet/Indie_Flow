@@ -108,11 +108,8 @@ class _CharctersListState extends State<CharctersList> {
 
 
   Future<void> refreshData() async {
-    // Simulate a network request or data fetching
     await Future.delayed(Duration(seconds: 1));
-
-    // Update the list with new data
-   dataNotifier.refreshData();
+    dataNotifier.refreshData();
   }
   void onScroll() {
    bool tempFloatingActionVisibile=false;

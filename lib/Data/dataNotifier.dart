@@ -18,7 +18,6 @@ class DataNotifier extends ChangeNotifier {
   bool _fetchingInitialData = true;
   String nextPageUrl = '';
   String prevPageUrl = Constants.RICK_AND_MORTY_API;
-
   String currentFilterType = Constants.ALL_CHARCTERS_KEY;
   String currentFilterValue = '';
 
